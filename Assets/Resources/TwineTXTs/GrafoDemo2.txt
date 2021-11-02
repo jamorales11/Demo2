@@ -1,0 +1,52 @@
+:: StoryTitle
+Prueba unity
+
+:: UserScript[script]
+
+
+:: UserStylesheet[stylesheet]
+
+
+:: Intro[START]
+Bienvenida:
+@
+Hola mundo
+[[Opcion 1]]
+{
+Boton.Oprimir()
+}
+<
+Simulator.OpenDialogueViewer()
+>
+
+:: Opcion 1[multipleChoice]
+Opcion 1
+@
+Hola num1
+[[Btn1.Touched(): Texto 1]]
+[[Btn2.Touched(): Texto 2]]
+{
+Btn1.Touched()
+Btn2.Touched()
+}
+<>
+
+:: Btn1.Touched(): Texto 1
+[[final]]
+@
+{}
+<>
+
+:: Btn2.Touched(): Texto 2
+[[final]]
+@
+{}
+<>
+
+:: final[END]
+
+@
+[[X]]
+{}
+<>
+
