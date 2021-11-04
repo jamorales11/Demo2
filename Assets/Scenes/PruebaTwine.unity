@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571336, b: 0.3069219, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -189,7 +189,7 @@ PrefabInstance:
         type: 3}
       propertyPath: twineText
       value: 
-      objectReference: {fileID: 4900000, guid: f4dd8e7bd687443ae8b24adefb2d8ca2, type: 3}
+      objectReference: {fileID: 4900000, guid: 10f3f9f64ea9e1e4984a4ca4595f96a3, type: 3}
     - target: {fileID: 6464524752979362538, guid: 684795c26c412b94091b0011780cd42b,
         type: 3}
       propertyPath: m_Name

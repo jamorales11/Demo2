@@ -92,23 +92,23 @@ public class SimulationObject {
                 string currLineText = nodeData[i];
                 bool tagsPresent = currLineText.IndexOf( "[" ) < currLineText.IndexOf( "\r\n" );
                 int endOfFirstLine = currLineText.IndexOf( "\r\n" );
-                //Debug.Log("CUR LINE: ---" + currLineText);
+                Debug.Log("CUR LINE: ---" + currLineText);
                 // Extract Title
                 int titleStart = 0;
                 int titleEnd = tagsPresent
                     ? currLineText.IndexOf( "[" )
                     : endOfFirstLine;
                 string title = currLineText.Substring(titleStart, titleEnd).Trim();
-                //Debug.Log("BODY title  "+title);
+                Debug.Log("BODY title  "+title);
                 // Extract Tags (if any)
                 string tags = tagsPresent
                     ? currLineText.Substring( titleEnd + 1, (endOfFirstLine - titleEnd)-2)
                     : "";
-                //Debug.Log("BODY tags  "+tags);
+                Debug.Log("BODY tags  "+tags);
 
                 // Extract Responses, Message Text user and simulator actions
                 string bodyNode = currLineText.Split('@')[1].Trim();
-                //Debug.Log("BODY NODE  "+bodyNode);
+                Debug.Log("BODY NODE  "+bodyNode);
 
                 string messageAndResponses = bodyNode.Substring( 0, bodyNode.IndexOf("{") );
                 //Debug.Log("MESSAGE & RESPONSES  "+messageAndResponses);
@@ -221,11 +221,12 @@ public class SimulationObject {
                 curNode.responses = new List<Response>();
                 //if ( !lastNode ) {
                     List<string> responseData = new List<string>(responseText.Split( new string [] { "\r\n" }, StringSplitOptions.None ));
-                    //Debug.Log("RT: ---" + responseText);
+                    Debug.Log("RT: ---" + responseText);
                     for ( int k = responseData.Count-1; k >= 0; k-- ) {
                         string curResponseData = responseData[k];
+                    Debug.Log("DataResponse: ---" + curResponseData);
 
-                        if ( string.IsNullOrEmpty( curResponseData ) ) {
+                    if ( string.IsNullOrEmpty( curResponseData ) ) {
                             responseData.RemoveAt( k );
                             continue;
                         }
@@ -234,6 +235,7 @@ public class SimulationObject {
                         Response curResponse = new Response();
                         int destinationStart = curResponseData.IndexOf( "[[");
                         int destinationEnd = curResponseData.IndexOf( "]]");
+                         Debug.Log("CURRR"+curResponseData);
                         string destination = curResponseData.Substring(destinationStart + 2, (destinationEnd - destinationStart)-2);
                         curResponse.destinationNode = destination;
                         if ( destinationStart == 0 )

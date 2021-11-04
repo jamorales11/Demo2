@@ -32,14 +32,14 @@ Btn2.Touched()
 <>
 
 :: Btn1.Touched(): Texto 1
-[[final]]
 @
+[[final]]
 {}
 <>
 
 :: Btn2.Touched(): Texto 2
-[[final]]
 @
+[[final]]
 {}
 <>
 

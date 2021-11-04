@@ -1,0 +1,192 @@
+﻿:: StoryTitle
+Herreria
+
+:: UserScript[script]
+
+
+:: UserStylesheet[stylesheet]
+
+
+:: Bienvenida[START]
+Se da la bienvenida al usuario, se le explica en qué consiste la simulación y qué objetos/herramientas podrá crear. Se le muestra este dialogo y se le pregunta cuál desea fabricar.
+@
+Bienvenido al entrenador de herreria, aca podra aprender como hacer algunas herramientas
+[[Seleccion Herramienta]]
+{}
+<
+GameController.displayObjetos()
+>
+
+:: Fabricar Espada[multipleChoice]
+Se despliega dialogo donde se explican los pasos para forjar una espada. Se le muestran distintos materiales a elegir.
+
+@ 
+Cual cree que es el material que mas se adapta al trabajo
+[[Elegir material óptimo]]
+[[Elegir material no óptimo]]
+{
+Material1.touched()
+Material2.touched()
+}
+<>
+
+:: Elegir material óptimo
+Se explica al usuario por qué el material es óptimo para fabricar la espada deseada.
+@
+Tu siguiente tarea es introducir el material en un horno 
+[[Calentar barra]]
+{}
+<>
+
+:: Elegir material no óptimo[dialogo]
+Se muestra dialogo dónde se explica porque dicho material no es apropiado para forjar la espada.
+@
+[[Fabricar Espada]]
+{}
+<>
+
+:: Calentar barra
+Se explica que el siguiente paso consiste en meter la barra a calentar en el horno.
+@
+Saca la barra del horno para golpearla hasta que tome la forma deseada
+[[Golpear Barra Caliente]]
+{
+Horno.OnCollision()
+}
+<
+Horno.esperarCalentar()
+Material1.cambiarColorRojo()
+>
+
+:: Golpear Barra Caliente[Random]
+Se le explica al usuario que debe golpear la barra caliente un número de veces determinado para darle forma de espada.
+@
+Golpea la barra caliente
+[[Templar espada]]
+[[Volver a calentar Espada]]
+{
+Material1.golpear()
+}
+<
+Material1.verificarNumGolpesHechos()
+>
+
+:: Templar espada
+Se explica que a continuación se debe meter la espada caliente a un líquido para que enfríe rápidamente y se tiemple.
+@
+Mantenga la espada dentro del agua un poco tiempo y luego saquela rapidamente
+[[Sacar Espada]]
+{
+Espada.sumergir()
+}
+<
+Espada.actualizarColor()
+Liquido.Play("SonidoVapor")
+>
+
+:: Sacar Espada
+Se le indica que debe sacar la espada del líquido
+@
+Felicidades el sigueinte paso sera escoger una de las empuñaduras
+[[Elegir Empuñadura]]
+{
+Espada.sacarDeLiquido()
+}
+<
+Empuñadura1.show()
+Empuñadura2.show()
+Empuñadura3.show()
+>
+
+:: Elegir Empuñadura
+Se le señalan al usuario las posibles empuñaduras que puede adjuntar a la Espada.
+@
+Escoja la empuñadura que mas le llame la atencion para su espada 
+[[Adjuntar Empuñadura]]
+{
+Empuñadura.touched()
+}
+<>
+
+:: Adjuntar Empuñadura
+@
+Se toma la empuñadura elegida anteriormente y se ensambla por el mango de la espada.
+[[Fin Forja Espada]]
+{
+Espada.OnCollisionEnter(Collision)
+}
+<
+Espada.UnirEmpuñadura()
+>
+
+:: Fin[END]
+@
+Gracias por su tiempo
+[[X]]
+{}
+<>
+
+:: Seleccion Herramienta[multipleChoice]
+Se selecciona que herramienta trabajara
+@
+Seleccione la herramienta que mas le llame la atencion
+[[Fabricar Espada]]
+[[Fabricar Hacha]]
+{
+BtnEspada.Touched()
+BtnHacha.Touched()
+}
+<>
+
+:: Fabricar Hacha
+Se despliega dialogo donde se explican los pasos para forjar una espada. Se le muestran distintos materiales a elegir.
+
+@ 
+Cual cree que es el material que mas se adapta al trabajo
+[[Elegir material óptimo H]]
+[[Elegir material no óptimo H]]
+{
+Material1.touched()
+Material2.touched()
+Material3.touched()
+}
+<>
+
+:: Elegir material óptimo H[END]
+@
+[[X]]
+{}
+<>
+
+:: Elegir material no óptimo H[dialogo]
+Se muestra dialogo dónde se explica porque dicho material no es apropiado para forjar la espada.
+@
+[[Fabricar Hacha]]
+{}
+<
+>
+
+:: Volver a calentar Espada
+@
+El Material aun no esta listo, vuelva a meterlo al horno
+[[Calentar barra]]
+{}
+<
+Material1.cambiarColorGris()
+>
+
+:: Fin Forja Espada[multipleChoice]
+Se muestra al usuario el objeto/herramienta que fabricó. Se le felicita por haber aprendido cómo forjarla. Y se le da la opción de volver a empezar la simulación.
+@
+Felicidades fabrico su primera herramienta
+[[Bienvenida]]
+[[Fin]]
+{
+btnVolverInicio.touch()
+btnFin.touch()
+}
+<
+Simulador.Play("MusicaCelebracion")
+Simulador.LoadScene("Simulacion")
+>
+
