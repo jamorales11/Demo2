@@ -13,6 +13,8 @@ public class Espada : MonoBehaviour
     public GameObject barra2;
     public GameObject barra3;
     public GameObject bladeAcabado;
+    public GameObject espadaFinal;
+
 
 
 
@@ -112,10 +114,16 @@ public class Espada : MonoBehaviour
             Debug.Log("Espada con agua");
 
             espadaEnAgua();
+            bladeAcabado.SetActive(false);
+            espadaFinal.SetActive(true);
+
             yield return new WaitForSeconds(0.5f);
             
 
             Debug.Log("Espada duró 10 segundos en agua");
+
+            bladeAcabado.SetActive(false);
+            espadaFinal.SetActive(true);
 
             pTouched = false;
         }
