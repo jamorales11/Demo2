@@ -1,0 +1,92 @@
+﻿:: StoryTitle
+Herreria
+
+:: UserScript[script]
+
+
+:: UserStylesheet[stylesheet]
+
+
+:: Bienvenida[START]
+Se da la bienvenida al usuario, se le explica en qué consiste la simulación y qué objetos/herramientas podrá crear. Se le muestra este dialogo y se le pregunta cuál desea fabricar.
+@
+
+[[Fabricar Espada]]
+{}
+<
+Simulator.Play("BienvenidaEspada")
+>
+
+:: Fabricar Espada
+Se despliega dialogo donde se explican los pasos para forjar una espada. Se le muestran distintos materiales a elegir.
+@ 
+Cual cree que es el material que mas se adapta al trabajo
+[[Coger Barra]]
+{}
+<
+Simulator.Play("TomaBarra")
+>
+
+:: Coger Barra
+@ 
+Cual cree que es el material que mas se adapta al trabajo
+[[Llevar al yunque]]
+{
+Espada.EspadaFueAgarrada()
+}
+<>
+
+:: Llevar al yunque
+@
+[[Golpear Barra Caliente]]
+{}
+<
+Simulator.Play("LlevalaYunque")
+>
+
+:: Golpear Barra Caliente
+Se le explica al usuario que debe golpear la barra caliente un número de veces determinado para darle forma de espada.
+@
+Golpea la barra caliente
+[[Llevar al agua]]
+{
+Espada.checkColisionesConMartillo()
+}
+<>
+
+:: Llevar al agua
+@
+Golpea la barra caliente
+[[Templar espada]]
+{}
+<
+Simulator.Play("LlevalaAgua")
+>
+
+:: Templar espada
+Se explica que a continuación se debe meter la espada caliente a un líquido para que enfríe rápidamente y se tiemple.
+@
+Mantenga la espada dentro del agua un poco tiempo y luego saquela rapidamente
+[[Fin Forja Espada]]
+{
+Espada.espadaEnAgua()
+}
+<>
+
+:: Fin[END]
+@
+Gracias por su tiempo
+[[X]]
+{}
+<>
+
+:: Fin Forja Espada
+Se muestra al usuario el objeto/herramienta que fabricó. Se le felicita por haber aprendido cómo forjarla. Y se le da la opción de volver a empezar la simulación.
+@
+Felicidades fabrico su primera herramienta
+[[X]]
+{}
+<
+Simulator.Play("Felicidades")
+>
+
